@@ -1,0 +1,36 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.has.MainFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/humidity_spinner"
+            android:layout_weight="0.8"
+            android:layout_gravity="center_horizontal" />
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2">
+
+            <com.has.util.HexagonGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:paddingLeft="20dp" android:paddingBottom="40dp"
+                app:exampleDimension="24sp" app:exampleColor="#33b5e5"
+                app:exampleString="HelloHexagonGroup"
+                app:exampleDrawable="@android:drawable/ic_menu_add"
+                android:id="@+id/hexagon_humidity"
+                android:clickable="true"
+                app:toggle = "0"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

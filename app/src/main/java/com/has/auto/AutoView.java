@@ -1,0 +1,10 @@
+package com.has.auto;
+
+/**
+ * Created by YoungWon on 2015-12-03.
+ */
+public interface AutoView {
+    void setTxtMaxValue(int value);
+    void setTxtMinValue(int value);
+
+}

@@ -1,0 +1,11 @@
+<resources>
+    <declare-styleable name="HexagonGroup">
+        <attr name="exampleString" format="string" />
+        <attr name="exampleDimension" format="dimension" />
+        <attr name="exampleColor" format="color" />
+        <attr name="exampleDrawable" format="color|reference" />
+        <attr name="borderColor" format="color" />
+        <attr name="maxHumidity" format="float" />
+        <attr name="toggle" format="integer" />
+    </declare-styleable>
+</resources>
