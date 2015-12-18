@@ -73,7 +73,7 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
     TextView txtDialogName;
     FButton dialogBtnOk;
     private LineChart mChart;
-
+    private FrameLayout mProgressPanel;
     FigureHumidity mFigureHumidity;
 
     /**
@@ -117,6 +117,7 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         spinner = (Spinner)root.findViewById(R.id.humidity_spinner);
         humidityHexagon = (HexagonGroup)root.findViewById(R.id.hexagon_humidity);
+        mProgressPanel = (FrameLayout)root.findViewById(R.id.progress_panel) ;
         humidityHexagon.setToggle(0);
         humidityHexagon.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -136,6 +137,14 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
 
         presenter.fragmentEntered();
         return root;
+    }
+    @Override
+    public void startProgress(){
+        mProgressPanel.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void stopProgress(){
+        mProgressPanel.setVisibility(View.INVISIBLE);
     }
     public void setSpinner(final ArrayList<String> spinnerDatas){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),

@@ -13,4 +13,6 @@ public interface HumidityView {
     void setHexagonGroup(String current_region);
     void setHexagonGroupHumidity(float[] sensor_value);
     void setHumidityDisplayValue(int i, float humidity);
+    void startProgress();
+    void stopProgress();
 }

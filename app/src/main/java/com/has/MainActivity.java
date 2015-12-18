@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
     ImageView icon_setting;
     @ViewById
     RelativeLayout background;
-    @ViewById
-    CircularProgressBar progressbar;
     private FragmentTransaction mFragmentTransaction;
 
     @Override
@@ -82,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
         sprinklerSelector.setOnClickListener(this);
         autoSelector.setOnClickListener(this);
         settingSelector.setOnClickListener(this);
-
-        progressbar.setVisibility(View.VISIBLE);
 
         setSelector();
     }

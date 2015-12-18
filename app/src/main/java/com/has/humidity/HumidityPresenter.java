@@ -48,6 +48,7 @@ public class HumidityPresenter {
         sensor_value = new float[10];
     }
     public void fragmentEntered(){
+        view.startProgress();
         new AsyncTask<Integer,Integer,Integer>(){
             ArrayList<String> spinnerDatas;
             @Override
@@ -64,6 +65,7 @@ public class HumidityPresenter {
             }
         }.execute();
         state = STATE_START;
+        view.stopProgress();
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
