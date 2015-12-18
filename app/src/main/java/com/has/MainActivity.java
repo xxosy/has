@@ -26,6 +26,8 @@ import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
 
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+
 @EActivity
 public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener,
         HumidityFragment.OnFragmentInteractionListener,
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
     ImageView icon_setting;
     @ViewById
     RelativeLayout background;
+    @ViewById
+    CircularProgressBar progressbar;
     private FragmentTransaction mFragmentTransaction;
 
     @Override
@@ -78,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
         sprinklerSelector.setOnClickListener(this);
         autoSelector.setOnClickListener(this);
         settingSelector.setOnClickListener(this);
+
+        progressbar.setVisibility(View.VISIBLE);
+
         setSelector();
     }
     @Override
