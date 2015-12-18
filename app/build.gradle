@@ -22,7 +22,7 @@ def AAVersion = '3.3'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.+'
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
     apt "org.androidannotations:androidannotations:$AAVersion"
@@ -33,6 +33,7 @@ dependencies {
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'com.orhanobut:dialogplus:1.10@aar'
     compile 'com.android.support:cardview-v7:23.0.+'
+    compile 'com.github.castorflex.smoothprogressbar:library-circular:1.0.1'
 }
 apt {
     arguments {
