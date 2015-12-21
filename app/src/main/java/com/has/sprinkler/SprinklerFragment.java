@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,9 +31,9 @@ import com.has.data.Sensors;
 import com.has.data.Sprinkler;
 import com.has.data.Sprinklers;
 import com.has.util.HexagonGroup;
+import com.rey.material.widget.ProgressView;
 
 import java.util.ArrayList;
-
 import info.hoang8f.widget.FButton;
 
 /**
@@ -64,6 +66,8 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
     FButton dialogBtnOk;
     ImageView dialogbtnPower;
     int selectPposition;
+    private FrameLayout progressLayout;
+    private ProgressView progressView;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -96,13 +100,25 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
         }
         mInflater = getActivity().getLayoutInflater();
     }
-
+    @Override
+    public void startProgress(){
+        progressLayout.setVisibility(View.VISIBLE);
+        progressView.start();
+    }
+    @Override
+    public void stopProgress(){
+        progressLayout.setVisibility(View.INVISIBLE);
+        progressView.stop();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sprinkler, container, false);
         spinner = (Spinner)root.findViewById(R.id.sprinkler_spinner);
         humidityHexagon = (HexagonGroup)root.findViewById(R.id.hexagon_sprinkler);
+        progressLayout = (FrameLayout)root.findViewById(R.id.progressback) ;
+        progressView = (ProgressView) root.findViewById(R.id.progressview) ;
+        stopProgress();
         humidityHexagon.setToggle(1);
         humidityHexagon.setOnTouchListener(new View.OnTouchListener() {
             @Override

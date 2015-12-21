@@ -37,6 +37,7 @@ import com.has.data.Sensor;
 import com.has.data.Sensors;
 import com.has.util.FigureHumidity;
 import com.has.util.HexagonGroup;
+import com.rey.material.widget.ProgressView;
 
 import java.util.ArrayList;
 
@@ -73,9 +74,9 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
     TextView txtDialogName;
     FButton dialogBtnOk;
     private LineChart mChart;
-    private FrameLayout mProgressPanel;
     FigureHumidity mFigureHumidity;
-
+    private FrameLayout progressLayout;
+    private ProgressView progressView;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -117,7 +118,8 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         spinner = (Spinner)root.findViewById(R.id.humidity_spinner);
         humidityHexagon = (HexagonGroup)root.findViewById(R.id.hexagon_humidity);
-        mProgressPanel = (FrameLayout)root.findViewById(R.id.progress_panel) ;
+        progressLayout = (FrameLayout)root.findViewById(R.id.progressback) ;
+        progressView = (ProgressView) root.findViewById(R.id.progressview) ;
         humidityHexagon.setToggle(0);
         humidityHexagon.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -134,17 +136,18 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
                 return false;
             }
         });
-
         presenter.fragmentEntered();
         return root;
     }
     @Override
     public void startProgress(){
-        mProgressPanel.setVisibility(View.VISIBLE);
+        progressLayout.setVisibility(View.VISIBLE);
+        progressView.start();
     }
     @Override
     public void stopProgress(){
-        mProgressPanel.setVisibility(View.INVISIBLE);
+        progressLayout.setVisibility(View.INVISIBLE);
+        progressView.stop();
     }
     public void setSpinner(final ArrayList<String> spinnerDatas){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),

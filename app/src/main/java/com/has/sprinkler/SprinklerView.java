@@ -12,4 +12,6 @@ public interface SprinklerView {
     void showDialog(int position,ArrayList<Entry> yVals);
     void setHexagonGroup(String current_region);
     void setPowerButtonState(Boolean btnState);
+    void startProgress();
+    void stopProgress();
 }

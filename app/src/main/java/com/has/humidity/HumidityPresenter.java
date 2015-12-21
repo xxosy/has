@@ -62,10 +62,11 @@ public class HumidityPresenter {
                 spinnerDatas= model.getRegionsData();
                 view.setSpinner(spinnerDatas);
                 view.setHexagonGroup(currentRegion);
+                view.stopProgress();
             }
         }.execute();
         state = STATE_START;
-        view.stopProgress();
+
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {

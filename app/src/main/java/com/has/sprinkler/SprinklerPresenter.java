@@ -38,6 +38,7 @@ public class SprinklerPresenter {
 
     }
     public void fragmentEntered(){
+        view.startProgress();
         new AsyncTask<Integer,Integer,Integer>(){
             ArrayList<String> spinnerDatas;
             @Override
@@ -53,10 +54,12 @@ public class SprinklerPresenter {
                 spinnerDatas= model.getRegionsData();
                 view.setSpinner(spinnerDatas);
                 view.setHexagonGroup(currentRegion);
+                view.stopProgress();
             }
         }.execute();
     }
     public void hexagonItemTouched(final int position){
+        view.setPowerButtonState(powerBtnState[position]);
         view.showDialog(position, yVals);
     }
     public void btnPowerClicked(final int position) {

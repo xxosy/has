@@ -26,8 +26,6 @@ import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
 
-import fr.castorflex.android.circularprogressbar.CircularProgressBar;
-
 @EActivity
 public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener,
         HumidityFragment.OnFragmentInteractionListener,
