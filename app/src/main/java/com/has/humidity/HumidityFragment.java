@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -37,7 +38,6 @@ import com.has.data.Sensor;
 import com.has.data.Sensors;
 import com.has.util.FigureHumidity;
 import com.has.util.HexagonGroup;
-import com.rey.material.widget.ProgressView;
 
 import java.util.ArrayList;
 
@@ -76,7 +76,7 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
     private LineChart mChart;
     FigureHumidity mFigureHumidity;
     private FrameLayout progressLayout;
-    private ProgressView progressView;
+    private ProgressBarCircularIndeterminate progressView;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -119,7 +119,7 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
         spinner = (Spinner)root.findViewById(R.id.humidity_spinner);
         humidityHexagon = (HexagonGroup)root.findViewById(R.id.hexagon_humidity);
         progressLayout = (FrameLayout)root.findViewById(R.id.progressback) ;
-        progressView = (ProgressView) root.findViewById(R.id.progressview) ;
+        progressView = (ProgressBarCircularIndeterminate) root.findViewById(R.id.progressBar) ;
         humidityHexagon.setToggle(0);
         humidityHexagon.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -142,12 +142,12 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
     @Override
     public void startProgress(){
         progressLayout.setVisibility(View.VISIBLE);
-        progressView.start();
+        progressView.setVisibility(View.VISIBLE);
     }
     @Override
     public void stopProgress(){
         progressLayout.setVisibility(View.INVISIBLE);
-        progressView.stop();
+        progressView.setVisibility(View.INVISIBLE);
     }
     public void setSpinner(final ArrayList<String> spinnerDatas){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),

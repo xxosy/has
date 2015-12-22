@@ -42,6 +42,7 @@ public class AutoPresenter {
         view.setTxtMinValue(value);
     }
     public void setButtonClicked(){
+        view.startProgress();
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -51,9 +52,14 @@ public class AutoPresenter {
                     Log.i("result", sResult);
                 return null;
             }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                view.stopProgress();
+            }
         }.execute();
     }
     public void startButtonClicked(){
+        view.startProgress();
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -62,9 +68,14 @@ public class AutoPresenter {
                     Log.i("result", sResult);
                 return null;
             }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                view.stopProgress();
+            }
         }.execute();
     }
     public void stopButtonClicked(){
+        view.startProgress();
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -72,6 +83,10 @@ public class AutoPresenter {
                 if(sResult!=null)
                     Log.i("result", sResult);
                 return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                view.stopProgress();
             }
         }.execute();
     }

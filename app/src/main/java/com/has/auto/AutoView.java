@@ -6,5 +6,6 @@ package com.has.auto;
 public interface AutoView {
     void setTxtMaxValue(int value);
     void setTxtMinValue(int value);
-
+    void startProgress();
+    void stopProgress();
 }

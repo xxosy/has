@@ -7,24 +7,4 @@
     <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
     </style>
-    <style name="LightCircularProgressView">
-        <item name="pv_autostart">false</item>
-        <item name="pv_circular">true</item>
-        <item name="pv_progressStyle">@style/LightCircularProgressDrawable</item>
-        <item name="pv_progressMode">indeterminate</item>
-    </style>
-    <style name="LightCircularProgressDrawable" parent="Material.Drawable.CircularProgress">
-        <item name="cpd_strokeColor">@color/colorPrimary</item>
-    </style>
-    <style name="DarkCircularProgressDrawable" parent="Material.Drawable.CircularProgress">
-        <item name="cpd_strokeColor">@color/colorAccent</item>
-        <item name="cpd_reverse">true</item>
-    </style>
-    <style name="DarkCircularProgressView">
-        <item name="pv_autostart">false</item>
-        <item name="pv_circular">true</item>
-        <item name="pv_progressStyle">@style/DarkCircularProgressDrawable</item>
-        <item name="pv_progressMode">indeterminate</item>
-    </style>
-
 </resources>

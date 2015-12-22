@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.has.R;
 
 import java.util.Calendar;
@@ -51,6 +52,8 @@ public class AutoFragment extends Fragment implements AutoView{
     private FButton btn_start;
     private FButton btn_stop;
     private FButton btn_set;
+    private FrameLayout progressLayout;
+    private ProgressBarCircularIndeterminate progressView;
     TimePickerDialog.OnTimeSetListener t;
 
     /**
@@ -84,7 +87,16 @@ public class AutoFragment extends Fragment implements AutoView{
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    @Override
+    public void startProgress(){
+        progressLayout.setVisibility(View.VISIBLE);
+        progressView.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void stopProgress(){
+        progressLayout.setVisibility(View.INVISIBLE);
+        progressView.setVisibility(View.INVISIBLE);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,6 +110,8 @@ public class AutoFragment extends Fragment implements AutoView{
         btn_set = (FButton)root.findViewById(R.id.auto_btn_set);
         btn_start = (FButton)root.findViewById(R.id.auto_btn_start);
         btn_stop = (FButton)root.findViewById(R.id.auto_btn_stop);
+        progressLayout = (FrameLayout)root.findViewById(R.id.progressback) ;
+        progressView = (ProgressBarCircularIndeterminate) root.findViewById(R.id.progressBar) ;
         seekbarMax.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
