@@ -266,5 +266,31 @@
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
+    <FrameLayout
+        android:id="@+id/progressback"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="#00f0d987"
+        android:clickable="true">
+
+        <FrameLayout
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:background="#22222222">
+
+            <com.rey.material.widget.ProgressView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progressview"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                app:pv_autostart="true"
+                app:pv_circular="true"
+                app:pv_progressStyle="@array/pv_circular"/>
+        </FrameLayout>
+
+    </FrameLayout>
 
 </FrameLayout>

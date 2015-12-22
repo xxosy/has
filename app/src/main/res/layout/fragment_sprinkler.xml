@@ -8,12 +8,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Spinner
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/sprinkler_spinner"
-            android:layout_weight="0.8"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="0.8">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/sprinkler_spinner"
+                android:layout_weight="0.8"
+                android:layout_gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/connect_state"
+                android:layout_weight="0.8"
+                android:background="@drawable/notconnect"
+                android:layout_gravity="center" />
+        </LinearLayout>
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res" android:layout_width="match_parent"
@@ -32,6 +47,7 @@
                 android:clickable="true" />
 
         </FrameLayout>
+
     </LinearLayout>
     <FrameLayout
         android:id="@+id/progressback"
@@ -53,7 +69,9 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_circular" />
+                app:pv_autostart="true"
+                app:pv_circular="true"
+                app:pv_progressStyle="@array/pv_circular"/>
         </FrameLayout>
 
     </FrameLayout>

@@ -14,4 +14,5 @@ public interface SprinklerView {
     void setPowerButtonState(Boolean btnState);
     void startProgress();
     void stopProgress();
+    void setConnectState(boolean bool);
 }

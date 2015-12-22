@@ -28,7 +28,7 @@ public class SprinklerPresenter {
     SprinklerModel model;
     ArrayList<Entry> yVals;
     String sResult;
-
+    boolean controllerConnectState = false;
     boolean powerBtnState[];
 
     String currentRegion;
@@ -43,18 +43,24 @@ public class SprinklerPresenter {
             ArrayList<String> spinnerDatas;
             @Override
             protected Integer doInBackground(Integer... params) {
-                model.setEnterData();
+                controllerConnectState = model.setEnterData();
                 return null;
             }
             @Override
             protected void onPostExecute(Integer result) {
-                powerBtnState = new boolean[Sprinklers.getInstance().getSprinklers().size()];
-                for(int i = 0;i<powerBtnState.length;i++)
-                    powerBtnState[i] = true;
-                spinnerDatas= model.getRegionsData();
-                view.setSpinner(spinnerDatas);
-                view.setHexagonGroup(currentRegion);
-                view.stopProgress();
+                if(controllerConnectState) {
+                    powerBtnState = new boolean[Sprinklers.getInstance().getSprinklers().size()];
+                    for (int i = 0; i < powerBtnState.length; i++)
+                        powerBtnState[i] = true;
+                    spinnerDatas = model.getRegionsData();
+                    view.setSpinner(spinnerDatas);
+                    view.setHexagonGroup(currentRegion);
+                    view.stopProgress();
+                    view.setConnectState(controllerConnectState);
+                }else{
+                    view.stopProgress();
+                    view.setConnectState(controllerConnectState);
+                }
             }
         }.execute();
     }

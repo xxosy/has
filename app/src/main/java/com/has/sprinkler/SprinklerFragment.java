@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
     TextView txtDialogName;
     FButton dialogBtnOk;
     ImageView dialogbtnPower;
+    ImageView connectState;
     int selectPposition;
     private FrameLayout progressLayout;
     private ProgressView progressView;
@@ -118,6 +120,7 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
         humidityHexagon = (HexagonGroup)root.findViewById(R.id.hexagon_sprinkler);
         progressLayout = (FrameLayout)root.findViewById(R.id.progressback) ;
         progressView = (ProgressView) root.findViewById(R.id.progressview) ;
+        connectState = (ImageView) root.findViewById(R.id.connect_state);
         stopProgress();
         humidityHexagon.setToggle(1);
         humidityHexagon.setOnTouchListener(new View.OnTouchListener() {
@@ -139,7 +142,13 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
         initDialog();
         return root;
     }
-
+    public void setConnectState(boolean bool){
+        if(bool){
+            connectState.setBackgroundResource(R.drawable.connected);
+        }else{
+            connectState.setBackgroundResource(R.drawable.notconnect);
+        }
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

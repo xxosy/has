@@ -35,21 +35,26 @@ public class SprinklerModel {
         ArrayList<String> array =Regions.getInstance().getRegionsArray();
         return array;
     }
-    public void setEnterData(){
+    public boolean setEnterData(){
         sResult = ClientSocket.getInstance().getServerRequest("sprinkler");
         Log.i("TAG", sResult);
-        Sprinklers.getInstance().initSprinklers();
-        try {
-            JSONObject obj = new JSONObject(sResult);
-            JSONArray jsonArray = obj.getJSONArray("sprinkler");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                String sprinkler_name = jsonArray.getJSONObject(i).getString("name");
-                Sprinkler sprinkler = new Sprinkler();
-                sprinkler.setName(sprinkler_name);
-                Sprinklers.getInstance().addItem(sprinkler);
+        if(sResult.contains("controller is not")){
+            return false;
+        }else {
+            Sprinklers.getInstance().initSprinklers();
+            try {
+                JSONObject obj = new JSONObject(sResult);
+                JSONArray jsonArray = obj.getJSONArray("sprinkler");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    String sprinkler_name = jsonArray.getJSONObject(i).getString("name");
+                    Sprinkler sprinkler = new Sprinkler();
+                    sprinkler.setName(sprinkler_name);
+                    Sprinklers.getInstance().addItem(sprinkler);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+            return true;
         }
     }
 }

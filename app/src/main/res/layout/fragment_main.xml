@@ -51,7 +51,9 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_circular" />
+                app:pv_autostart="true"
+                app:pv_circular="true"
+                app:pv_progressStyle="@array/pv_circular"/>
         </FrameLayout>
 
     </FrameLayout>
