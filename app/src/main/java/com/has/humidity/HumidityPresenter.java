@@ -34,7 +34,6 @@ public class HumidityPresenter {
     ArrayList<Entry> yVals;
 
     int position;
-    HttpURLConnection conn;
     String sResult;
 
     HumidityData mHumidityData;
@@ -66,7 +65,6 @@ public class HumidityPresenter {
             }
         }.execute();
         state = STATE_START;
-
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -75,23 +73,24 @@ public class HumidityPresenter {
                         break;
                     }
                     sResult = ClientSocket.getInstance().getServerRequest("recent_value");
-                    Log.i("TAG", sResult);
-                    try {
-                        JSONObject obj = new JSONObject(sResult);
-                        JSONArray jsonArray = obj.getJSONArray("humid");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            sensor_value[i] = Float.valueOf(jsonArray.getJSONObject(i).getString("humidity")) / 900 * 100;
-                            Log.i("sensor_value", String.valueOf(sensor_value[i]));
-                            if(position == i)
-                                view.setHumidityDisplayValue(0,sensor_value[position]);
+                    if (sResult!=null) {
+                        Log.i("TAG", sResult);
+                        try {
+                            JSONObject obj = new JSONObject(sResult);
+                            JSONArray jsonArray = obj.getJSONArray("humid");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                sensor_value[i] = Float.valueOf(jsonArray.getJSONObject(i).getString("humidity")) / 900 * 100;
+                                Log.i("sensor_value", String.valueOf(sensor_value[i]));
+                                if(position == i)
+                                    view.setHumidityDisplayValue(0,sensor_value[position]);
+                            }
+                            view.setHexagonGroupHumidity(sensor_value);
+                            Thread.sleep(1000);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-
-                        view.setHexagonGroupHumidity(sensor_value);
-                        Thread.sleep(2000);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
                 }
                 return null;
@@ -127,7 +126,6 @@ public class HumidityPresenter {
 
             }
         });
-
     }
     public void btnOkClicked(){
         state = STATE_STOP;

@@ -8,4 +8,6 @@ public interface AutoView {
     void setTxtMinValue(int value);
     void startProgress();
     void stopProgress();
+    void setSeekbarMax(int max);
+    void setSeekbarMin(int min);
 }

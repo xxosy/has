@@ -49,23 +49,25 @@ public class HumidityModel {
 
     public void setEnterData() {
         sResult = ClientSocket.getInstance().getServerRequest("data");
-        Log.i("TAG", sResult);
-        Regions.getInstance().initRegions();
-        Sensors.getInstance().initSensors();
-        try {
-            JSONObject obj = new JSONObject(sResult);
-            JSONArray jsonArray = obj.getJSONArray("region");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                String region_name = jsonArray.getJSONObject(i).getString("name");
-                Regions.getInstance().setRegionsArray(region_name);
-                JSONArray jsonSensorArray = jsonArray.getJSONObject(i).getJSONArray("sensor");
-                for (int j = 0; j < jsonSensorArray.length(); j++) {
-                    String sensor_name = jsonSensorArray.getJSONObject(j).getString("name");
-                    Sensors.getInstance().addSensorsArray(region_name, sensor_name);
+        if(sResult!=null) {
+            Log.i("TAG", sResult);
+            Regions.getInstance().initRegions();
+            Sensors.getInstance().initSensors();
+            try {
+                JSONObject obj = new JSONObject(sResult);
+                JSONArray jsonArray = obj.getJSONArray("region");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    String region_name = jsonArray.getJSONObject(i).getString("name");
+                    Regions.getInstance().setRegionsArray(region_name);
+                    JSONArray jsonSensorArray = jsonArray.getJSONObject(i).getJSONArray("sensor");
+                    for (int j = 0; j < jsonSensorArray.length(); j++) {
+                        String sensor_name = jsonSensorArray.getJSONObject(j).getString("name");
+                        Sensors.getInstance().addSensorsArray(region_name, sensor_name);
+                    }
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 }

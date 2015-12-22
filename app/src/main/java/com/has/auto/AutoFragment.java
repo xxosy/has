@@ -1,10 +1,10 @@
 package com.has.auto;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,6 @@ import android.widget.TimePicker;
 
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.has.R;
-
-import java.util.Calendar;
 
 import info.hoang8f.widget.FButton;
 
@@ -178,9 +176,15 @@ public class AutoFragment extends Fragment implements AutoView{
                 presenter.stopButtonClicked();
             }
         });
+        presenter.fragmentEntered();
         return root;
     }
-
+    public void setSeekbarMax(int max){
+        seekbarMax.setProgress(max);
+    }
+    public void setSeekbarMin(int min){
+        seekbarMin.setProgress(min);
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

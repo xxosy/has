@@ -31,7 +31,28 @@ public class AutoPresenter {
         this.model = new AutoModel();
     }
     public void fragmentEntered(){
-
+        view.startProgress();
+        new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params) {
+                sResult = ClientSocket.getInstance().getServerRequest("automatic_setting");
+                if(sResult!=null) {
+                    Log.i("result", sResult);
+                    String data[] = sResult.split("=");
+                    max_value = Integer.valueOf(data[1]);
+                    min_value = Integer.valueOf(data[2]);
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                view.stopProgress();
+                view.setTxtMaxValue(max_value);
+                view.setTxtMinValue(min_value);
+                view.setSeekbarMax(max_value);
+                view.setSeekbarMin(min_value);
+            }
+        }.execute();
     }
     public void maxSeekBarValueChanged(int value){
         this.max_value = value;
