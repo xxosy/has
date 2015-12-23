@@ -127,7 +127,11 @@ public class HexagonGroup extends View {
     public void setCurrentHumidity(float[] mCurrentHumidity) {
         this.mCurrentHumidity = new float[mCurrentHumidity.length];
         for(int i = 0;i<getItemLength();i++) {
-            if (mCurrentHumidity[i] > this.mMaxHumidity)
+            if(mCurrentHumidity[i]==1000) {
+                this.mCurrentHumidity[i] = 1000;
+                continue;
+            }
+            else if (mCurrentHumidity[i] > this.mMaxHumidity)
                 this.mCurrentHumidity[i] = mMaxHumidity;
             else if (mCurrentHumidity[i] < 0)
                 this.mCurrentHumidity[i] = 0;
@@ -246,6 +250,7 @@ public class HexagonGroup extends View {
         Path path = new Path();
         Paint paint = new Paint(hexagonPaint);
         paint.setColor(Color.argb(255, 0, 191, 255));
+        if(mCurrentHumidity[i] == 1000) paint.setColor(Color.argb(255,255,201,14));
         float radiusHexagon = radius-100;
         float triangleHeight = (float) (Math.sqrt(3) * radiusHexagon / 2);
         path.moveTo(X, Y + radiusHexagon);
@@ -266,6 +271,9 @@ public class HexagonGroup extends View {
     private void drawReading(Canvas canvas, float X, float Y,int i){
         Path path = new Path();
         String message = String.format("%d", (int)this.mCurrentHumidity[i]);
+        if(this.mCurrentHumidity[i]==1000){
+            message = "NOT";
+        }
         float[] widths = new float[message.length()];
         readingPaint.getTextWidths(message, widths);
         float advance = 0;

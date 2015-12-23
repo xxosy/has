@@ -40,11 +40,15 @@ public class HumidityPresenter {
     String sensor_name;
     String currentRegion;
     float sensor_value[];
+    int sensor_value_size[];
+    int sensor_value_count[];
     HumidityPresenter(HumidityView view){
         this.view = view;
         this.model = new HumidityModel();
         mHumidityData = new HumidityData();
         sensor_value = new float[10];
+        sensor_value_count = new int[10];
+        sensor_value_size = new int[10];
     }
     public void fragmentEntered(){
         view.startProgress();
@@ -80,7 +84,19 @@ public class HumidityPresenter {
                             JSONArray jsonArray = obj.getJSONArray("humid");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 sensor_value[i] = Float.valueOf(jsonArray.getJSONObject(i).getString("humidity")) / 900 * 100;
+                                int temp_size = Integer.valueOf(jsonArray.getJSONObject(i).getString("size"));
+                                if(sensor_value_size[i]==temp_size) {
+                                    sensor_value_count[i]++;
+                                } else if(sensor_value_size[i]>temp_size) {
+                                    sensor_value_count[i] = 0;
+                                }
+                                sensor_value_size[i] = temp_size;
+                                if(sensor_value_count[i]>2){
+                                    sensor_value[i] = 1000;
+                                }
                                 Log.i("sensor_value", String.valueOf(sensor_value[i]));
+                                Log.i("sensor_value_count", String.valueOf(sensor_value_count[i]));
+                                Log.i("sensor_value_size", String.valueOf(sensor_value_size[i]));
                                 if(position == i)
                                     view.setHumidityDisplayValue(0,sensor_value[position]);
                             }

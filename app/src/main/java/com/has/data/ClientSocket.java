@@ -70,6 +70,7 @@ public class ClientSocket {
             outputStream.close();
             socket.close();
             socket = null;
+            instance = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
