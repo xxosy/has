@@ -1,20 +1,15 @@
 package com.has.data;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
  * Created by YoungWon on 2015-12-01.
  */
 public class Regions {
-    ArrayList<Region> regions;
+    public Region[] region;
     public static Regions instance;
-
-    public Regions(){
-        Region region = new Region();
-        region.setName("Grassplot");
-        regions = new ArrayList<>();
-        regions.add(region);
-    }
 
     public static Regions getInstance(){
         if(instance == null){
@@ -22,28 +17,24 @@ public class Regions {
         }
         return instance;
     }
-    public ArrayList<Region> getRegions() {
-        return regions;
+    public Region[] getRegion() {
+        return region;
     }
 
-    public void setRegions(ArrayList<Region> regions) {
-        this.regions = regions;
+    public void setRegion(Region[] region) {
+        this.region = region;
     }
-
+    public void setInstance(Regions regions){
+        instance = regions;
+    }
     public ArrayList<String> getRegionsArray(){
         ArrayList<String> result = new ArrayList<String>();
-        for(Region region : getRegions()){
+        for(Region region : this.region){
             result.add(region.getName());
         }
         return result;
     }
     public void initRegions(){
-        regions = new ArrayList<>();
-    }
-    public void setRegionsArray(String strRegion){
-
-        Region region = new Region();
-        region.setName(strRegion);
-        regions.add(region);
+        region = null;
     }
 }

@@ -6,20 +6,14 @@ import android.util.Log;
 import com.github.mikephil.charting.data.Entry;
 import com.has.data.ClientSocket;
 import com.has.data.HumidityData;
-import com.has.data.Sensor;
-import com.has.data.Sensors;
+import com.has.data.Region;
+import com.has.data.Regions;
 
 import org.androidannotations.api.BackgroundExecutor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -94,9 +88,6 @@ public class HumidityPresenter {
                                 if(sensor_value_count[i]>2){
                                     sensor_value[i] = 1000;
                                 }
-                                Log.i("sensor_value", String.valueOf(sensor_value[i]));
-                                Log.i("sensor_value_count", String.valueOf(sensor_value_count[i]));
-                                Log.i("sensor_value_size", String.valueOf(sensor_value_size[i]));
                                 if(position == i)
                                     view.setHumidityDisplayValue(0,sensor_value[position]);
                             }
@@ -121,15 +112,9 @@ public class HumidityPresenter {
             public void execute() {
                 int posCnt = 0;
                 sensor_name = "Loading";
-                for (Sensor sensor : Sensors.getInstance().getSensors()) {
-                    if (sensor.getRegion_name().equals(currentRegion)) {
-                        if (position == posCnt) {
-                            sensor_name = sensor.getName();
-                            break;
-                        } else {
-                            posCnt++;
-                            continue;
-                        }
+                for (Region region : Regions.getInstance().getRegion()) {
+                    if (region.getName().equals(currentRegion)) {
+                        sensor_name = region.getSensor()[position].getName();
                     }
                 }
                 BackgroundExecutor.execute(new BackgroundExecutor.Task("", 0, "") {

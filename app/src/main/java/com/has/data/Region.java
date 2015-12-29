@@ -5,6 +5,8 @@ package com.has.data;
  */
 public class Region {
     String name;
+    String id;
+    Sensor[] sensor;
 
     public String getName() {
         return name;
@@ -12,5 +14,21 @@ public class Region {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Sensor[] getSensor() {
+        return sensor;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setSensor(Sensor[] sensor) {
+        this.sensor = sensor;
     }
 }

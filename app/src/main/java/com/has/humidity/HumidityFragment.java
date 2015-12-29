@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.UiThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,16 +32,14 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.has.R;
-import com.has.data.ClientSocket;
-import com.has.data.Sensor;
-import com.has.data.Sensors;
+import com.has.data.Region;
+import com.has.data.Regions;
 import com.has.util.FigureHumidity;
 import com.has.util.HexagonGroup;
 
 import java.util.ArrayList;
 
 import info.hoang8f.widget.FButton;
-import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -169,8 +166,8 @@ public class HumidityFragment extends Fragment implements HumidityView, OnChartG
     @Override
     public void setHexagonGroup(String current_region){
         int size = 0;
-        for(Sensor sensor: Sensors.getInstance().getSensors())
-            if(sensor.getRegion_name().equals(current_region)) size++;
+        for(Region region: Regions.getInstance().getRegion())
+            if(region.getName().equals(current_region)) size = region.getSensor().length;
         humidityHexagon.setCurrentRegion(size);
     }
     @Override

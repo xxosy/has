@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.has.R;
-import com.has.data.Sensor;
-import com.has.data.Sensors;
 
 public class HexagonGroup extends View {
     private static final String TAG = HexagonGroup.class.getSimpleName();
