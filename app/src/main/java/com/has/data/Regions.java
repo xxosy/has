@@ -2,6 +2,9 @@ package com.has.data;
 
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +37,16 @@ public class Regions {
         }
         return result;
     }
-    public void initRegions(){
-        region = null;
+    public static void update(){
+        String sResult = ClientSocket.getInstance().getServerRequest("data");
+        if (sResult != null) {
+            Log.i("TAG", sResult);
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                instance = mapper.readValue(sResult.getBytes(), Regions.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

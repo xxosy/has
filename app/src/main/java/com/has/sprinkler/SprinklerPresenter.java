@@ -5,19 +5,9 @@ import android.util.Log;
 
 import com.github.mikephil.charting.data.Entry;
 import com.has.data.ClientSocket;
-import com.has.data.Sprinklers;
+import com.has.data.Region;
+import com.has.data.Regions;
 
-import org.androidannotations.api.BackgroundExecutor;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -48,19 +38,22 @@ public class SprinklerPresenter {
             }
             @Override
             protected void onPostExecute(Integer result) {
-                if(controllerConnectState) {
-                    powerBtnState = new boolean[Sprinklers.getInstance().getSprinklers().size()];
-                    for (int i = 0; i < powerBtnState.length; i++)
-                        powerBtnState[i] = true;
-                    spinnerDatas = model.getRegionsData();
-                    view.setSpinner(spinnerDatas);
-                    view.setHexagonGroup(currentRegion);
-                    view.stopProgress();
-                    view.setConnectState(controllerConnectState);
-                }else{
-                    view.stopProgress();
-                    view.setConnectState(controllerConnectState);
+                spinnerDatas = model.getRegionsData();
+                view.setSpinner(spinnerDatas);
+                int size = 0;
+                for(Region region:Regions.getInstance().getRegion()) {
+                    Log.i("region.getName()",region.getName());
+                    Log.i("currentRegion",currentRegion);
+                    if (region.getName().equals(currentRegion))
+                        size = region.getSprinkler().length;
                 }
+                Log.i("zzzzzzz",String.valueOf(size));
+                powerBtnState = new boolean[size];
+                for (int i = 0; i < powerBtnState.length; i++)
+                    powerBtnState[i] = true;
+                view.setHexagonGroup(currentRegion);
+                view.stopProgress();
+                view.setConnectState(controllerConnectState);
             }
         }.execute();
     }

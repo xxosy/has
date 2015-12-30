@@ -10,10 +10,6 @@ public class Sensor {
     String region_id;
     String id;
     String region_name;
-    public void setName(String region_name,String name) {
-        this.name = name;
-        this.region_name = region_name;
-    }
 
     public String getName() {
         return name;

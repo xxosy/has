@@ -21,7 +21,8 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.github.mikephil.charting.data.Entry;
 import com.has.R;
-import com.has.data.Sprinklers;
+import com.has.data.Region;
+import com.has.data.Regions;
 import com.has.util.HexagonGroup;
 
 import java.util.ArrayList;
@@ -218,7 +219,10 @@ public class SprinklerFragment extends Fragment implements SprinklerView{
     }
     public void setHexagonGroup(String current_region){
         int size = 0;
-        size = Sprinklers.getInstance().getSprinklers().size();
+        for(Region region: Regions.getInstance().getRegion()) {
+            if (region.getName().equals(current_region))
+                size = region.getSprinkler().length;
+        }
         humidityHexagon.setCurrentRegion(size);
     }
     public interface OnFragmentInteractionListener {

@@ -7,6 +7,7 @@ public class Region {
     String name;
     String id;
     Sensor[] sensor;
+    Sprinkler[] sprinkler;
 
     public String getName() {
         return name;
@@ -30,5 +31,13 @@ public class Region {
 
     public void setSensor(Sensor[] sensor) {
         this.sensor = sensor;
+    }
+
+    public Sprinkler[] getSprinkler() {
+        return sprinkler;
+    }
+
+    public void setSprinkler(Sprinkler[] sprinkler) {
+        this.sprinkler = sprinkler;
     }
 }
