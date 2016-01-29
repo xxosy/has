@@ -193,9 +193,6 @@ public class HexagonGroup extends View {
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
         initItemPosition();
-//        drawShadow(canvas, (float) (centerX - Math.sqrt(3) * radius / 2), centerY + radius * 3 / 2);
-//        drawShadow(canvas, (float) (centerX + Math.sqrt(3) * radius / 2), centerY + radius * 3 / 2);
-//        drawShadow(canvas,(float)(centerX+Math.sqrt(3)*radius),centerY);
         for(int i = 0;i<7;i++) {
             drawHexagon(canvas, itemPositionX[i], itemPositionY[i]);
         }
@@ -204,8 +201,6 @@ public class HexagonGroup extends View {
             if(toggle==0)
                 drawReading(canvas,itemPositionX[i], itemPositionY[i],i);
         }
-//        drawScale(canvas);
-//        drawReading(canvas);
     }
 
     /**
@@ -270,14 +265,13 @@ public class HexagonGroup extends View {
         Path path = new Path();
         String message = String.format("%d", (int)this.mCurrentHumidity[i]);
         if(this.mCurrentHumidity[i]==1000){
-            message = "NOT";
+            message = "X";
         }
         float[] widths = new float[message.length()];
         readingPaint.getTextWidths(message, widths);
         float advance = 0;
         for(double width:widths)
             advance += width;
-        Log.d(TAG,"advance: "+advance);
         path.moveTo(X - advance/2, Y+30);
         path.lineTo(X + advance/2, Y+30);
         canvas.drawTextOnPath(message, path, 0f, 0f, readingPaint);

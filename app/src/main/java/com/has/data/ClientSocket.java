@@ -13,7 +13,7 @@ import java.net.Socket;
  * Created by YoungWon on 2015-12-15.
  */
 public class ClientSocket {
-    private String serverIP = "112.156.39.70";
+    private String serverIP = "221.159.48.200";
     private int serverPort = 8888;
     private static ClientSocket instance;
     private Socket socket;

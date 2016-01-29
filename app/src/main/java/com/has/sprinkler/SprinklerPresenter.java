@@ -42,12 +42,9 @@ public class SprinklerPresenter {
                 view.setSpinner(spinnerDatas);
                 int size = 0;
                 for(Region region:Regions.getInstance().getRegion()) {
-                    Log.i("region.getName()",region.getName());
-                    Log.i("currentRegion",currentRegion);
                     if (region.getName().equals(currentRegion))
                         size = region.getSprinkler().length;
                 }
-                Log.i("zzzzzzz",String.valueOf(size));
                 powerBtnState = new boolean[size];
                 for (int i = 0; i < powerBtnState.length; i++)
                     powerBtnState[i] = true;
