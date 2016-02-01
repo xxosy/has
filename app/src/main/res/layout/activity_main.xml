@@ -88,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/icon_setting"
-                        android:background="@drawable/setting_icon"
+                        android:background="@drawable/windowicon"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="25dp"

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.has.auto.AutoFragment;
 import com.has.data.ClientSocket;
+import com.has.door.DoorFragment;
 import com.has.humidity.HumidityFragment;
 import com.has.sprinkler.SprinklerFragment;
 
@@ -30,7 +31,8 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener,
         HumidityFragment.OnFragmentInteractionListener,
         SprinklerFragment.OnFragmentInteractionListener,
-        AutoFragment.OnFragmentInteractionListener{
+        AutoFragment.OnFragmentInteractionListener,
+        DoorFragment.OnFragmentInteractionListener{
     MainPresenter presenter;
     private int thisFragment = R.id.humidity_selector;
     private int container = R.id.container;
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
                 presenter.autoSelectorTouched();
                 break;
             }case R.id.setting_selector:{
-//                presenter.settingSelectorTouched();
+                presenter.settingSelectorTouched();
                 break;
             }
         }

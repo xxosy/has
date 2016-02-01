@@ -3,6 +3,7 @@ package com.has;
 import android.app.Fragment;
 
 import com.has.auto.AutoFragment;
+import com.has.door.DoorFragment;
 import com.has.humidity.HumidityFragment;
 import com.has.sprinkler.SprinklerFragment;
 
@@ -17,10 +18,12 @@ public class MainModel {
     HumidityFragment humidityFragment;
     SprinklerFragment sprinklerFragment;
     AutoFragment autoFragment;
+    DoorFragment doorFragment;
     MainModel(){
         humidityFragment = HumidityFragment.newInstance("","");
         sprinklerFragment = SprinklerFragment.newInstance("","");
         autoFragment = AutoFragment.newInstance("","");
+        doorFragment = DoorFragment.newInstance("","");
     }
     public Fragment getFragment(String id){
         if(id.equals(ID_HUMIDITY)){
@@ -30,7 +33,7 @@ public class MainModel {
         }else if(id.equals(ID_AUTO)){
             return autoFragment;
         }else if(id.equals(ID_SETTING)){
-
+            return doorFragment;
         }
         return null;
     }
